@@ -38,10 +38,10 @@ class FichaMedicaController extends Controller
         // 2. Gerar o UUID único (Padrão RFC 4122)
         $uuid = Str::uuid()->toString();
 
-        // Tratamento para upload de foto (exemplo básico)
+        // Tratamento para upload de foto
         $fotoPath = null;
         if ($request->hasFile('foto_paciente')) {
-            $fotoPath = $request->file('foto_paciente')->store('fotos_pacientes', 'public');
+            $fotoPath = $request->file('foto_paciente')->store('fotos_pacientes', config('filesystems.default'));
         }
 
         // 3. Criar a nova ficha associada ao usuário autenticado

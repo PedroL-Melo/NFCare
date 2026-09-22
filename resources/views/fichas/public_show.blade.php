@@ -50,7 +50,7 @@
             <!-- Identificação Principal (Spans 2 columns) -->
             <div class="col-span-2 rounded-[2rem] border border-premium-border bg-premium-card backdrop-blur-xl p-8 flex flex-col items-center text-center">
                 @if($fichaMedica->foto_paciente)
-                    <img src="{{ asset('storage/' . $fichaMedica->foto_paciente) }}" alt="Foto" class="w-28 h-28 rounded-full object-cover mb-5 ring-4 ring-white">
+                    <img src="{{ Storage::url($fichaMedica->foto_paciente) }}" alt="Foto" class="w-28 h-28 rounded-full object-cover mb-5 ring-4 ring-white">
                 @else
                     <div class="w-28 h-28 rounded-full bg-gray-100 flex items-center justify-center mb-5 ring-4 ring-white">
                         <svg class="w-12 h-12 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
