@@ -14,7 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (\Throwable $e) {
+            echo "<h1>Real Error:</h1><pre>" . $e->getMessage() . "</pre>";
+            echo "<h2>Trace:</h2><pre>" . $e->getTraceAsString() . "</pre>";
+            die();
+        });
     })->create();
 
 // Correção para o Vercel (Sistema de Arquivos Read-Only)
