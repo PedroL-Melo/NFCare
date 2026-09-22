@@ -1,13 +1,15 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-bold text-2xl text-gray-900 leading-tight tracking-tight">
-            {{ __('Meu Perfil') }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="font-bold text-2xl text-gray-900 leading-tight tracking-tight">
+                    {{ __('Meu Perfil') }}
+                </h2>
+                <a href="{{ route('dashboard') }}" class="text-sm font-bold text-nfcblue hover:underline">
+                    &larr; Voltar
+                </a>
+            </div>
             <!-- Sair da Conta Card -->
             <div class="p-4 sm:p-8 bg-premium-card backdrop-blur-xl border border-premium-border rounded-[2rem]">
                 <div class="max-w-xl">
