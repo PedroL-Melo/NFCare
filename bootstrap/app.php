@@ -1,10 +1,20 @@
 <?php
 
+// Correção para o Vercel (Sistema de Arquivos Read-Only)
+if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
+    $_ENV['APP_SERVICES_CACHE'] = '/tmp/services.php';
+    $_SERVER['APP_SERVICES_CACHE'] = '/tmp/services.php';
+    $_ENV['APP_PACKAGES_CACHE'] = '/tmp/packages.php';
+    $_SERVER['APP_PACKAGES_CACHE'] = '/tmp/packages.php';
+    $_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
+    $_SERVER['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
+}
+
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
-return Application::configure(basePath: dirname(__DIR__))
+$app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
@@ -21,7 +31,6 @@ return Application::configure(basePath: dirname(__DIR__))
         });
     })->create();
 
-// Correção para o Vercel (Sistema de Arquivos Read-Only)
 if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
     $app->useStoragePath('/tmp/storage');
     
