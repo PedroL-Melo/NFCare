@@ -4,11 +4,11 @@
             <div class="bg-premium-card backdrop-blur-xl border border-premium-border rounded-[2rem] p-6 sm:p-10">
                 
                 <!-- Header interno -->
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 pb-6 border-b border-gray-200">
-                    <h2 class="font-bold text-xl sm:text-2xl text-gray-900 leading-tight tracking-tight">
+                <div class="flex justify-between items-center mb-10 pb-8 border-b border-gray-200">
+                    <h2 class="font-bold text-lg sm:text-2xl text-gray-900 leading-tight tracking-tight">
                         {{ __('Minhas Fichas Médicas') }}
                     </h2>
-                    <a href="{{ route('fichas.create') }}" class="w-full sm:w-auto text-center bg-nfcblue hover:bg-blue-800 text-white font-bold py-2.5 px-6 rounded-full transition-all active:scale-95 shadow-sm">
+                    <a href="{{ route('fichas.create') }}" class="bg-nfcblue hover:bg-blue-800 text-white font-bold py-2.5 px-5 sm:px-6 rounded-full transition-all active:scale-95 shadow-sm text-sm sm:text-base whitespace-nowrap">
                         + Nova Ficha
                     </a>
                 </div>
