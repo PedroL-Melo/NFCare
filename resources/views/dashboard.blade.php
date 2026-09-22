@@ -1,18 +1,17 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-bold text-2xl text-gray-900 leading-tight tracking-tight">
-                {{ __('Minhas Fichas Médicas') }}
-            </h2>
-            <a href="{{ route('fichas.create') }}" class="bg-nfcblue hover:bg-blue-800 text-white font-bold py-2 px-5 rounded-full transition-all active:scale-95">
-                + Nova Ficha
-            </a>
-        </div>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-premium-card backdrop-blur-xl border border-premium-border rounded-[2rem] p-6 sm:p-10">
+                
+                <!-- Header interno -->
+                <div class="flex justify-between items-center mb-8 pb-6 border-b border-gray-200">
+                    <h2 class="font-bold text-2xl text-gray-900 leading-tight tracking-tight">
+                        {{ __('Minhas Fichas Médicas') }}
+                    </h2>
+                    <a href="{{ route('fichas.create') }}" class="bg-nfcblue hover:bg-blue-800 text-white font-bold py-2.5 px-6 rounded-full transition-all active:scale-95 shadow-sm">
+                        + Nova Ficha
+                    </a>
+                </div>
                 
                 @if($fichas->isEmpty())
                     <div class="text-center py-12">
@@ -31,14 +30,20 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($fichas as $ficha)
                             <div class="border border-premium-border bg-white/60 backdrop-blur-md rounded-[2rem] p-6 hover:bg-white transition-colors">
-                                <div class="flex items-center mb-6">
-                                    <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center text-red-600 font-extrabold text-xl mr-4 border border-red-100">
-                                        {{ substr($ficha->nome_paciente, 0, 1) }}
+                                <div class="flex items-start justify-between mb-6">
+                                    <div class="flex items-center">
+                                        <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center text-red-600 font-extrabold text-xl mr-4 border border-red-100">
+                                            {{ substr($ficha->nome_paciente, 0, 1) }}
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-bold text-gray-900 leading-tight">{{ $ficha->nome_paciente }}</h3>
+                                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">Sangue: <span class="font-bold text-red-600">{{ $ficha->tipo_sanguineo }}</span></p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h3 class="text-lg font-bold text-gray-900 leading-tight">{{ $ficha->nome_paciente }}</h3>
-                                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">Sangue: <span class="font-bold text-red-600">{{ $ficha->tipo_sanguineo }}</span></p>
-                                    </div>
+                                    <!-- Botão NFC no topo direito -->
+                                    <a href="{{ route('fichas.nfc', $ficha->id) }}" class="w-12 h-12 flex items-center justify-center flex-shrink-0 bg-gray-50 border border-gray-100 hover:bg-nfcblue hover:border-nfcblue hover:text-white rounded-full text-gray-600 transition-colors shadow-sm" title="Gravar Tag NFC">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </a>
                                 </div>
                                 <div class="mt-4 flex flex-col space-y-3">
                                     <div class="flex space-x-3">
