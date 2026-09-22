@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/fichas/{id}/editar', [FichaMedicaController::class, 'edit'])->name('fichas.edit');
     Route::put('/fichas/{id}', [FichaMedicaController::class, 'update'])->name('fichas.update');
     Route::delete('/fichas/{id}', [FichaMedicaController::class, 'destroy'])->name('fichas.destroy');
+    
+    // Rota para Configurar NFC
+    Route::get('/fichas/{id}/nfc', [FichaMedicaController::class, 'nfc'])->name('fichas.nfc');
 });
 
 require __DIR__.'/auth.php';

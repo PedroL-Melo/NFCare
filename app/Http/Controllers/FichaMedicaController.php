@@ -118,4 +118,12 @@ class FichaMedicaController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Ficha excluída com sucesso!');
     }
+    /**
+     * Tela de Configuração NFC
+     */
+    public function nfc($id)
+    {
+        $ficha = FichaMedica::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        return view('fichas.nfc-write', compact('ficha'));
+    }
 }
