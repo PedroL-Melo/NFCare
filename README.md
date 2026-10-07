@@ -1,59 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+﻿# NFCare - Fichas Médicas NFC 🏥⚡
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+NFCare é um sistema moderno de gestão de fichas médicas com integração direta a tecnologias NFC. Desenvolvido para permitir que médicos e profissionais de saúde criem perfis de emergência vitais para seus pacientes, gravando os dados de acesso rápido em pulseiras, cartões ou tags NFC.
 
-## About Laravel
+Em caso de emergência, qualquer socorrista ou pessoa com um smartphone pode aproximar o celular da pulseira do paciente para visualizar instantaneamente seu perfil de saúde (alergias, tipo sanguíneo, contatos de emergência e condições crônicas).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Este projeto foi construído com as melhores e mais modernas ferramentas do ecossistema PHP e Frontend:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*   **Framework:** [Laravel 11](https://laravel.com)
+*   **Banco de Dados:** [Supabase](https://supabase.com) (PostgreSQL escalável e serverless)
+*   **Frontend & UI:** [Tailwind CSS](https://tailwindcss.com), Blade Components e Alpine.js
+*   **Integração de Hardware:** Web NFC API para gravação nativa de tags pelo navegador (Android)
+*   **Hospedagem & Deploy:** [Vercel](https://vercel.com) (Serverless Functions via ercel-php)
 
-## Learning Laravel
+## ✨ Principais Funcionalidades
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+*   **Painel do Médico (Dashboard):** Autenticação segura onde o médico pode gerenciar todos os seus pacientes.
+*   **Criação de Fichas Médicas:** Cadastro detalhado de informações vitais (foto, tipo sanguíneo, alergias, laudos rápidos).
+*   **Perfil Público de Emergência:** Uma rota otimizada e responsiva desenhada para leitura rápida em situações de emergência.
+*   **Gravação NFC Direta:** Interface inteligente que permite ao médico gravar a URL de emergência na tag NFC do paciente usando o próprio smartphone (suporte a Web NFC ou fallback para apps como *NFC Tools* no iOS).
+*   **Serverless Ready:** Arquitetura inteiramente adaptada para rodar em ambientes Serverless (AWS Lambda / Vercel), com tratamento especial para cache e file systems Read-Only.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Como rodar o projeto localmente
 
-## Laravel Sponsors
+### Pré-requisitos
+*   PHP 8.2+
+*   Composer
+*   Node.js & NPM
+*   Banco de Dados PostgreSQL (ou MySQL, mas o projeto usa extensões PostgreSQL para o Supabase)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Passo a Passo
 
-### Premium Partners
+1. **Clone o repositório:**
+   `ash
+   git clone https://github.com/seu-usuario/nfcare.git
+   cd nfcare
+   `
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2. **Instale as dependências do PHP:**
+   `ash
+   composer install
+   `
 
-## Contributing
+3. **Instale e compile os assets do Frontend:**
+   `ash
+   npm install
+   npm run build
+   `
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. **Configure o ambiente:**
+   Copie o arquivo .env.example para .env e configure suas variáveis, especialmente a conexão com o banco de dados.
+   `ash
+   cp .env.example .env
+   php artisan key:generate
+   `
 
-## Code of Conduct
+5. **Execute as migrações (Criação do Banco de Dados):**
+   `ash
+   php artisan migrate
+   `
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Inicie o servidor local:**
+   `ash
+   php artisan serve
+   `
+   Acesse a aplicação em http://localhost:8000.
 
-## Security Vulnerabilities
+## ☁️ Deploy no Vercel
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Este projeto já inclui o arquivo ercel.json e adaptações no ootstrap/app.php para rodar sem problemas no Vercel usando o runtime ercel-php@0.6.2. 
 
-## License
+**Variáveis de Ambiente Necessárias no Vercel:**
+*   APP_KEY
+*   DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD
+*   VIEW_COMPILED_PATH = /tmp/storage/framework/views (Obrigatório para contornar o sistema de arquivos Read-Only do Vercel).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🛡️ Segurança
+
+O projeto não envia nenhuma credencial sensível ou chave de banco de dados para o repositório. O arquivo .env está devidamente listado no .gitignore. As senhas dos usuários são criptografadas via Bcrypt padrão do Laravel e as rotas públicas de emergência acessam os dados via identificadores únicos (UUID).
+
+---
+*Desenvolvido com dedicação para salvar vidas através da tecnologia.*
